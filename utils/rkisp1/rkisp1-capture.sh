@@ -68,12 +68,10 @@ configure_pipeline() {
 
 	$mediactl -r
 
-	$mediactl -l "'$sensor':0 -> 'rockchip-sy-mipi-dphy':0 [1]"
-	$mediactl -l "'rockchip-sy-mipi-dphy':1 -> 'rkisp1-isp-subdev':0 [1]"
+	$mediactl -l "'$sensor':0 -> 'rkisp1-isp-subdev':0 [1]"
 	$mediactl -l "'rkisp1-isp-subdev':2 -> 'rkisp1_mainpath':0 [1]"
 
 	$mediactl -V "\"$sensor\":0 [$format]"
-	$mediactl -V "'rockchip-sy-mipi-dphy':1 [$format]"
 	$mediactl -V "'rkisp1-isp-subdev':0 [$format crop:(0,0)/$sensor_size]"
 	$mediactl -V "'rkisp1-isp-subdev':2 [fmt:$capture_mbus_code/$capture_size crop:(0,0)/$capture_size]"
 }
